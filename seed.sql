@@ -7,15 +7,15 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE
   user (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_name VARCHAR(512),
-    user_email VARCHAR(512),
-    work_shift VARCHAR(512)
+    user_name VARCHAR(512) NOT NULL,
+    user_email VARCHAR(512) NOT NULL,
+    work_shift INT NOT NULL
   );
 INSERT INTO
   user (user_id, user_name, user_email, work_shift)
 VALUES
-  (1, 'Usuário Teste', 'email_teste@teste.com', '08:00'),
-  (2, 'Usuário Teste 2', 'email_teste2@teste.com', '08:00');
+  (1, 'Usuário Teste', 'email_teste@teste.com', '480'),
+  (2, 'Usuário Teste 2', 'email_teste2@teste.com', '480');
 
 
 DROP TABLE IF EXISTS shift_history;

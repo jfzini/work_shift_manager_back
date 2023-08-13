@@ -1,4 +1,5 @@
 const User = require('../models/user.models');
+const formatShift = require('../utils/formatDates.utils');
 
 class UserService {
   async getAll() {
@@ -18,6 +19,18 @@ class UserService {
 
   async create(user) {
     await User.create(user);
+  }
+
+  async insertShift(id, body) {
+    const totalShift = formatShift(body);
+
+    const shift = {
+      userId: id,
+      ...body,
+      totalShift,
+    };
+
+    await User.insertShift(shift);
   }
 }
 

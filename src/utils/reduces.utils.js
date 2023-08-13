@@ -1,5 +1,5 @@
 const reduceUserShifts = (shifts, id) => shifts.reduce(
-    (acc, { companyId, shiftStart, shiftBreakStart, shiftBreakEnd, shiftEnd, workedHours }) => ({
+    (acc, { companyId, shiftStart, shiftBreakStart, shiftBreakEnd, shiftEnd, totalShift }) => ({
         userId: id,
         shifts: [
           ...acc.shifts,
@@ -9,7 +9,7 @@ const reduceUserShifts = (shifts, id) => shifts.reduce(
             shiftBreakStart,
             shiftBreakEnd,
             shiftEnd,
-            workedHours,
+            totalShift,
           },
         ],
       }),

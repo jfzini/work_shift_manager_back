@@ -20,6 +20,12 @@ class UserController {
     if (userShifts.shifts.length) return res.status(200).json(userShifts);
     return res.status(404).json({ message: 'No shifts found for that user' });
   }
+
+  async create(req, res) {
+    const userData = req.body;
+    await User.create(userData);
+    return res.status(201).json({ message: 'User created successfully' });
+  }
 }
 
 module.exports = new UserController();

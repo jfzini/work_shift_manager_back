@@ -15,6 +15,10 @@ class UserService {
     const userShifts = await User.getShiftsById(id);
     return userShifts;
   }
+
+  async create(user) {
+    await User.create(user);
+  }
 }
 
 module.exports = new UserService();

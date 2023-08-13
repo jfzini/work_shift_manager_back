@@ -10,7 +10,14 @@ const formatPlaceholders = (data) => {
   return values.join(', ');
 };
 
+const insertQuery = (table, data) => {
+  const columns = formatColumns(data);
+  const placeholders = formatPlaceholders(data);
+  return [`INSERT INTO ${table} (${columns}) VALUES (${placeholders})`, [...Object.values(data)]];
+};
+
 module.exports = {
   formatColumns,
   formatPlaceholders,
+  insertQuery,
 };

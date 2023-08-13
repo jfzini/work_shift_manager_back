@@ -26,6 +26,13 @@ class UserController {
     await User.create(userData);
     return res.status(201).json({ message: 'User created successfully' });
   }
+
+  async insertShift(req, res) {
+    const { id } = req.params;
+    const shiftData = req.body;
+    await User.insertShift(id, shiftData);
+    return res.status(201).json({ message: 'Shift created successfully' });
+  }
 }
 
 module.exports = new UserController();

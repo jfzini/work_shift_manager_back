@@ -1,7 +1,7 @@
 const camelize = require('camelize');
 const connection = require('../configs/connection');
 const { reduceUserShifts } = require('../utils/reduces.utils');
-const { formatColumns, formatPlaceholders } = require('../utils/queries.utils');
+const { insertQuery } = require('../utils/queries.utils');
 
 class UserModel {
   async getAll() {
@@ -24,11 +24,11 @@ class UserModel {
   }
 
   async create(user) {
-    const columns = formatColumns(user);
-    const placeholders = formatPlaceholders(user);
-    await connection.execute(
-      `INSERT INTO user (${columns}) VALUES (${placeholders})`, [...Object.values(user)],
-    );
+    await connection.execute(...insertQuery('user', user));
+  }
+
+  async insertShift(shift) {
+    await connection.execute(...insertQuery('shift_history', shift));
   }
 }
 

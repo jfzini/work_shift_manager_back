@@ -11,14 +11,4 @@ const connection = mysql.createPool({
   queueLimit: 0,
 });
 
-// tests connection
-connection.getConnection((err, connection) => {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  } else {
-    console.log('connected as id ' + connection.threadId);
-  }
-});
-
 module.exports = connection;

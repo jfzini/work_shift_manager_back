@@ -10,6 +10,11 @@ class UserService {
     const user = await User.getById(id);
     return user;
   }
+
+  async getShiftsById(id) {
+    const userShifts = await User.getShiftsById(id);
+    return userShifts;
+  }
 }
 
 module.exports = new UserService();

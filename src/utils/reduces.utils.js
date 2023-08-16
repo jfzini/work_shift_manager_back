@@ -4,7 +4,6 @@ const reduceUserShifts = (shifts, id) => shifts.reduce(
         shifts: [
           ...acc.shifts,
           {
-            companyId,
             shiftStart,
             shiftBreakStart,
             shiftBreakEnd,

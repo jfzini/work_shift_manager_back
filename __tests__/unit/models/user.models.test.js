@@ -4,8 +4,14 @@ const connection = require('../../../src/configs/connection');
 const UserModel = require('../../../src/models/user.models');
 
 // mocks
-const { getAllFromDB, getAllFromModel, getByIdFromDB, getByIdFromModel } = require('../mocks/models.mock');
-
+const {
+  getAllFromDB,
+  getAllFromModel,
+  getByIdFromDB,
+  getByIdFromModel,
+  getShiftsByIdFromDB,
+  getShiftsByIdFromModel,
+} = require('../mocks/models.mock');
 
 describe('UserModel', function () {
   afterEach(function () {
@@ -25,5 +31,15 @@ describe('UserModel', function () {
     const user = await UserModel.getById(1);
     expect(user).to.be.an('object');
     expect(user).to.deep.equal(getByIdFromModel);
+  });
+
+  it('getShiftsById should return a user with shifts', async function () {
+    sinon.stub(connection, 'execute').resolves(getShiftsByIdFromDB);
+    const user = await UserModel.getShiftsById(1);
+    expect(user).to.be.an('object');
+    expect(user).to.have.property('shifts');
+    expect(user.shifts).to.be.an('array');
+    expect(user.shifts).to.have.lengthOf(14);
+    expect(user).to.deep.equal(getShiftsByIdFromModel)
   });
 });
